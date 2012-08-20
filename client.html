@@ -1,0 +1,17 @@
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+
+<body style="font-family:helvetica">
+	<div id="ticker">
+	
+	</div>
+</body>
+
+<script>
+  var socket = io.connect('http://127.0.0.1:8000');
+  socket.on('ticker', function (data) {
+    $('#ticker').html("<h4>" + data.stock + "</h4><div style='font-size:30px;font-weight:bold;width:100px;float:left;height:40px'>" + data.price + "</div><div style='font-size:20px;font-weight:bold;width:100px;float:left;line-height:42px;color:" + data.color + "'>" + data.diff + "</div><div style='float:left;line-height:45px'>" + data.timestamp + " - Real Time Price</div>");
+    //console.log(data);
+    //socket.emit('my other event', { my: 'data' });
+  });
+</script>
